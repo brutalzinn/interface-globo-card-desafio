@@ -32,7 +32,11 @@ const Home = () => {
     return (
         <>
         <Header/>
-        <Grid container className={classes.root}>
+
+        <Grid container
+        direction="column" className={classes.root}
+        justifyContent="center"
+        alignItems="center">
 
         <Grid item xs={12}>
         <Paper className={classes.paper}>Mesmo com falhas defensivas recorrentes, o
@@ -51,30 +55,28 @@ const Home = () => {
         </Box>
         </Paper>
         </Grid>
+
+
+
         <IconButton>
-
-        <Grid container
-    direction="column" className={classes.gridMore}
-    justifyContent="center"
-    alignItems="center">
-
-
-        <Grid item xs={5} >
+        <Box
+        display="flex" flexDirection="column"
+        >
+        <Box p={1}>
         <MoreHorizIcon/>
-        </Grid>
-
-        <Grid item xs={5}>
+        </Box>
+        <Box p={1}>
         <Typography >
         Toque para exibir mais insights
         </Typography>
-        </Grid>
+        </Box>
 
-
-
-        </Grid>
+        </Box>
         </IconButton>
 
+
         </Grid>
+
 
         </>
         )
