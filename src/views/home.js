@@ -39,7 +39,10 @@ const Home = () => {
         alignItems="center">
 
         <Grid item xs={12}>
-        <Paper className={classes.paper}>Mesmo com falhas defensivas recorrentes, o
+        <Paper className={classes.paper}>
+        <Typography>
+
+        Mesmo com falhas defensivas recorrentes, o
         time de Rogério Ceni conseguiu resolver o jogo
         através das boas atuações de jogadores do
         meio pra frente. Diego, Gerson e Arrascaeta
@@ -48,6 +51,10 @@ const Home = () => {
         bastante segurança. Apesar do erro no
         primeiro gol do time Argentino, Arão conseguiu
         marcar e jogar bem
+
+
+        </Typography>
+
         <Typography style={{margin:15,color:"#ED4D77",textAlign:"center",borderColor:"rgba(237, 77, 119, 24%)",borderStyle:"solid", borderRadius:4}}>
         TEMPORADA
         </Typography>
