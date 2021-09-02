@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundImage: `url(${imageBackgound})`
     },
     gridChild:{
-        margin:"10px"
+        margin:"5px",
     },
 
 }));
@@ -29,7 +29,6 @@ export default function Layout(){
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
 
 
         <Grid container xs={12} className={classes.gridContainer}>
@@ -41,7 +40,7 @@ export default function Layout(){
         <Avatar alt="Roberto Paes" src={profileImage} />
         </Grid>
         <Grid className={classes.gridChild} item xs={3}>
-        <IconButton aria-label="delete" color="primary">
+        <IconButton  style={{ color: "#ED4D77" }}>
         <AddIcon/>
         </IconButton>
 
@@ -51,7 +50,6 @@ export default function Layout(){
         </Grid>
 
 
-        </div>
         );
 
     }

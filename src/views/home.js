@@ -48,11 +48,9 @@ const Home = () => {
         bastante segurança. Apesar do erro no
         primeiro gol do time Argentino, Arão conseguiu
         marcar e jogar bem
-        <Box style={{borderColor:"rgba(237, 77, 119, 24%)",borderStyle:"solid", borderRadius:4}}>
-        <Typography style={{color:"#ED4D77",textAlign:"center"}}>
+        <Typography style={{margin:15,color:"#ED4D77",textAlign:"center",borderColor:"rgba(237, 77, 119, 24%)",borderStyle:"solid", borderRadius:4}}>
         TEMPORADA
         </Typography>
-        </Box>
         </Paper>
         </Grid>
 
