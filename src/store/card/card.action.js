@@ -1,5 +1,6 @@
 import {
-  getAllCards
+  getAllCards,
+  insertCard
 } from '../../services/cards.service'
 import {  cardType  } from '../types'
 
@@ -17,3 +18,16 @@ export const getAllCardsAction = () => {
   }
 }
 
+export const insertCardAction = (data) => {
+  return async (dispatch) => {
+    try {
+
+      let result = await insertCard()
+      console.log('card list',result.data.cards)
+      dispatch({ type: cardType.CARD_ALL, data: result.data })
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+}
