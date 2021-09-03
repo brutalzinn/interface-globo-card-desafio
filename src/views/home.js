@@ -48,22 +48,23 @@ const Home = () => {
         dispatch(getAllCardsAction())
     },[]);
 
-    useEffect(() => {
-        if(loading){
-            setOpen(true)
-        }else{
-            setOpen(false)
-        }
-    },[loading]);
+    // useEffect(() => {
+    //     if(loading){
+    //         setOpen(true)
+    //     }
+    // },[loading]);
 
     useEffect(() => {
         if(error.length > 0){
            setOpen(true)
         }else{
-           setOpen(false)
-        }
+            setOpen(false)
 
-    },[error]);
+        }
+        if(loading){
+            setOpen(true)
+        }
+    },[error,loading]);
 
     const moreCards = () =>{
         dispatch(getAllCardsAction())

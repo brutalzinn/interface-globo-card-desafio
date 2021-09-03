@@ -82,9 +82,10 @@ const DialogTitle = withStyles(styles)((props) => {
                         </Typography>
                         </DialogContent>
                         <DialogActions>
+                        {!loading &&
                         <Button autoFocus onClick={handleClose} color="primary">
                         ACEITAR
-                        </Button>
+                        </Button>}
                         </DialogActions>
                         </Dialog>
                         </div>
