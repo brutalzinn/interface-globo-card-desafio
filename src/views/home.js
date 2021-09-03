@@ -6,8 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import IconButton from '@material-ui/core/IconButton';
-
+import CardTemplate from '../components/Cards/card.template'
 import Paper from '@material-ui/core/Paper'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {getAllCardsAction} from '../store/card/card.action'
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor:"#F4F4F4"
@@ -26,65 +29,72 @@ const useStyles = makeStyles((theme) => ({
         textAlign:"center"
     }
 }));
+
+
+
 const Home = () => {
     const classes = useStyles();
+    const dispatch = useDispatch()
+    // const fillCards = () =>{
+    //     dispatch(getAllCardsAction())
+    // }
+    const loading = useSelector((state) => state.cards.loading)
+    const cards = useSelector((state) => state.cards.all)
 
-    return (
-        <>
-        <Header/>
+    useEffect(() => {
+        dispatch(getAllCardsAction())
+    },[]);
 
-        <Grid container
-        direction="column" className={classes.root}
-        justifyContent="center"
-        alignItems="center">
+    const FeederCard = () =>{
+        if (cards == undefined || cards.length == 0) {
+            return <></>
+        }
+        return cards.map((item ,index)=>{
+            console.log('#####',item)
+            return (
+                <Grid item xs={12} key={index}>
+                <CardTemplate text={item.texto} tags={item.tags}/>
+                </Grid>
+                )
+            })
 
-        <Grid item xs={12}>
-        <Paper className={classes.paper}>
-        <Typography>
+        }
+        return (
+            <>
+            <Header/>
 
-        Mesmo com falhas defensivas recorrentes, o
-        time de Rogério Ceni conseguiu resolver o jogo
-        através das boas atuações de jogadores do
-        meio pra frente. Diego, Gerson e Arrascaeta
-        fizeram boa partida e Gabigol, mais uma vez,
-        converteu uma cobrança de pênalti com
-        bastante segurança. Apesar do erro no
-        primeiro gol do time Argentino, Arão conseguiu
-        marcar e jogar bem
+            <Grid container
+            direction="column" className={classes.root}
+            justifyContent="center"
+            alignItems="center">
 
-
-        </Typography>
-
-        <Typography style={{margin:15,color:"#ED4D77",textAlign:"center",borderColor:"rgba(237, 77, 119, 24%)",borderStyle:"solid", borderRadius:4}}>
-        TEMPORADA
-        </Typography>
-        </Paper>
-        </Grid>
-
-
-
-        <IconButton>
-        <Box
-        display="flex" flexDirection="column"
-        >
-        <Box p={1}>
-        <MoreHorizIcon/>
-        </Box>
-        <Box p={1}>
-        <Typography >
-        Toque para exibir mais insights
-        </Typography>
-        </Box>
-
-        </Box>
-        </IconButton>
+            <FeederCard/>
 
 
-        </Grid>
 
 
-        </>
-        )
-    }
+            <IconButton>
+            <Box
+            display="flex" flexDirection="column"
+            >
+            <Box p={1}>
+            <MoreHorizIcon/>
+            </Box>
+            <Box p={1}>
+            <Typography >
+            Toque para exibir mais insights
+            </Typography>
+            </Box>
 
-    export default Home
+            </Box>
+            </IconButton>
+
+
+            </Grid>
+
+
+            </>
+            )
+        }
+
+        export default Home

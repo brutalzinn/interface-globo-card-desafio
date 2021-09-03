@@ -15,7 +15,7 @@ const reducer = (state = INITIAL_STATE, action) => {
     state.loading = action.status
     return state
     case cardType.CARD_ALL:
-    state.all = action.data
+    state.all = action.data.cards
     state.loading = false
     return state
     case cardType.CARD_EDIT:

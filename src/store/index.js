@@ -4,12 +4,11 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
 // importação dos reducers
-import { reducer as toastrReducer } from 'react-redux-toastr'
 import CardReducer from './card/card.reducer'
 
 
 const reducers = combineReducers({
-  card: CardReducer
+  cards: CardReducer
 })
 
 // middlewares de redux

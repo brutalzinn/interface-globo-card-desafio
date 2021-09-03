@@ -1,17 +1,18 @@
 import {
-  getAllCargo
-} from '../../services/cargo.service'
-import {cardType} from '../types'
+  getAllCards
+} from '../../services/cards.service'
+import {  cardType  } from '../types'
 
-export const getAll = () => {
+export const getAllCardsAction = () => {
   return async (dispatch) => {
     try {
 
-      let result = await getAllCargo()
-      console.log('cargo list',result.data)
+      let result = await getAllCards()
+      console.log('card list',result.data.cards)
       dispatch({ type: cardType.CARD_ALL, data: result.data })
     }
     catch (error) {
+      console.log(error)
     }
   }
 }
