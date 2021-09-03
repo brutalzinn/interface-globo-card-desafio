@@ -34,26 +34,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
     const classes = useStyles();
-    const dispatch = useDispatch()
     // const fillCards = () =>{
     //     dispatch(getAllCardsAction())
     // }
-    const loading = useSelector((state) => state.cards.loading)
-    const cards = useSelector((state) => state.cards.all)
-
-    useEffect(() => {
-        dispatch(getAllCardsAction())
-    },[]);
-
-        return (
-            <Grid className={classes.root}>
-            <HeaderEditor/>
-
-            <CardFormTemplate/>
 
 
-            </Grid>
-            )
-        }
 
-        export default Home
+    return (
+        <Grid className={classes.root}>
+        <HeaderEditor/>
+
+        <CardFormTemplate/>
+
+
+        </Grid>
+        )
+    }
+
+    export default Home

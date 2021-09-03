@@ -6,6 +6,6 @@ const http = axios.create({
     baseURL: urlApi
 })
 
-http.defaults.headers['content-type'] = 'application/json'
+http.defaults.headers['Content-Type'] = 'application/json'
 
 export default http

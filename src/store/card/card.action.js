@@ -21,10 +21,11 @@ export const getAllCardsAction = () => {
 export const insertCardAction = (data) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: cardType.CARD_LOADING, status: false })
 
-      let result = await insertCard()
-      console.log('card list',result.data.cards)
-      dispatch({ type: cardType.CARD_ALL, data: result.data })
+      await insertCard(data)
+      dispatch({ type: cardType.CARD_LOADING, status: true })
+
     }
     catch (error) {
       console.log(error)

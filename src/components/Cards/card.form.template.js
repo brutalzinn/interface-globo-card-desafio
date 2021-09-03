@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
+import {insertCardAction} from '../../store/card/card.action'
+import { useDispatch, useSelector } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -52,7 +54,9 @@ const useStyles = makeStyles((theme) => ({
 //mode 0 - Insert mode
 const CardFormTemplate = ({mode}) =>{
     const classes = useStyles();
-    const maxChar = 5
+    const dispatch = useDispatch()
+
+    const maxChar = 400
     const [charsCount, setCharsCount] = useState(maxChar)
     const [form, setForm] = useState({
         texto:"",
@@ -75,10 +79,14 @@ const CardFormTemplate = ({mode}) =>{
             setForm({...form,texto:value})
 
             break
+            case "tags":
+            setForm({...form,tags:[value]})
+            break
         }
 
     }
     const submitForm = () =>{
+        dispatch(insertCardAction(form))
 
     }
 
