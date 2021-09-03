@@ -10,7 +10,7 @@ import Avatar from '@material-ui/core/Avatar'
 import Box from '@material-ui/core/Box'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Typography } from '@material-ui/core'
-
+import { navigate } from "@reach/router"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,12 +40,15 @@ const useStyles = makeStyles((theme) => ({
 
 const HeaderHead = () =>{
     const classes = useStyles();
+    const returnButton = () =>{
+        navigate('/')
+    }
     return(
         <>
         <Box
         display="flex" height="55px" alignItems="center" flexDirection="row"
         >
-        <IconButton style={{color: "#ED4D77" }}>
+        <IconButton onClick={returnButton} style={{color: "#ED4D77" }}>
         <ArrowBackIcon className={classes.arrowSize} />
         </IconButton>
         <Typography style={{margin:"auto",color:"#ED4D77", fontSize:"20px"}}>Criar Insight</Typography>

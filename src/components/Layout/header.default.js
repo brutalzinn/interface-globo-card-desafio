@@ -8,10 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add'
 import Avatar from '@material-ui/core/Avatar'
 import Box from '@material-ui/core/Box'
-
 import { Typography } from '@material-ui/core'
-
-
+import { navigate } from "@reach/router"
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -45,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 const HeaderHead = () =>{
     const classes = useStyles();
     const moreButton = () =>{
-
+        navigate('/form')
     }
     return(
         <>

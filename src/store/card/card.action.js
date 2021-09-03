@@ -3,17 +3,21 @@ import {
   insertCard
 } from '../../services/cards.service'
 import {  cardType  } from '../types'
-
+import store from '../../store';
 export const getAllCardsAction = () => {
   return async (dispatch) => {
     try {
+      dispatch({ type: cardType.CARD_LOADING, status: true })
 
-      let result = await getAllCards()
-      console.log('card list',result.data.cards)
+      const stateRedux = store.getState();
+      let page = stateRedux.cards.page
+      let result = await getAllCards(page)
       dispatch({ type: cardType.CARD_ALL, data: result.data })
+
     }
     catch (error) {
-      console.log(error)
+      dispatch({ type: cardType.CARD_ERROR, data: error.response.data })
+
     }
   }
 }
@@ -21,10 +25,10 @@ export const getAllCardsAction = () => {
 export const insertCardAction = (data) => {
   return async (dispatch) => {
     try {
-      dispatch({ type: cardType.CARD_LOADING, status: false })
+      dispatch({ type: cardType.CARD_LOADING, status: true })
 
       await insertCard(data)
-      dispatch({ type: cardType.CARD_LOADING, status: true })
+      dispatch({ type: cardType.CARD_LOADING, status: false })
 
     }
     catch (error) {

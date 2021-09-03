@@ -5,7 +5,10 @@ const INITIAL_STATE = {
   all: [],
   upload: {},
   selected: {},
-  filtred: []
+  filtred: [],
+  page: 1,
+  error:[]
+
 }
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -15,7 +18,8 @@ const reducer = (state = INITIAL_STATE, action) => {
     state.loading = action.status
     return state
     case cardType.CARD_ALL:
-    state.all = action.data.cards
+    state.all = state.all.concat(action.data.cards)
+    state.page += 1
     state.loading = false
     return state
     case cardType.CARD_EDIT:
@@ -24,6 +28,11 @@ const reducer = (state = INITIAL_STATE, action) => {
     return state
     case cardType.CARD_CREATE:
     state.loading = false
+    return state
+    case cardType.CARD_ERROR:
+    const err = [...state.error, action.data]
+    state.loading = false
+    state.error = err;
     return state
     default:
     return state

@@ -11,6 +11,8 @@ import Paper from '@material-ui/core/Paper'
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {getAllCardsAction} from '../store/card/card.action'
+//dialog importers
+import DialogModal from '../components/dialog.modal'
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor:"#F4F4F4"
@@ -35,9 +37,10 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
     const classes = useStyles();
     const dispatch = useDispatch()
-    // const fillCards = () =>{
-    //     dispatch(getAllCardsAction())
-    // }
+
+    const [open, setOpen] = React.useState(false);
+
+    const error = useSelector((state) => state.cards.error)
     const loading = useSelector((state) => state.cards.loading)
     const cards = useSelector((state) => state.cards.all)
 
@@ -45,12 +48,31 @@ const Home = () => {
         dispatch(getAllCardsAction())
     },[]);
 
+    useEffect(() => {
+        if(loading){
+            setOpen(true)
+        }else{
+            setOpen(false)
+        }
+    },[loading]);
+
+    useEffect(() => {
+        if(error.length > 0){
+           setOpen(true)
+        }else{
+           setOpen(false)
+        }
+
+    },[error]);
+
+    const moreCards = () =>{
+        dispatch(getAllCardsAction())
+    }
     const FeederCard = () =>{
         if (cards == undefined || cards.length == 0) {
             return <></>
         }
         return cards.map((item ,index)=>{
-            console.log('#####',item)
             return (
                 <Grid item xs={12} key={index}>
                 <CardTemplate text={item.texto} tags={item.tags}/>
@@ -62,13 +84,13 @@ const Home = () => {
         return (
             <>
             <Header/>
-
+            <DialogModal open={open} setOpen={setOpen} loading={loading} />
             <Grid container
             direction="column" className={classes.root}
             justifyContent="center"
             alignItems="center">
             <FeederCard/>
-            <IconButton>
+            <IconButton onClick={moreCards}>
             <Box
             display="flex" flexDirection="column"
             >
@@ -80,14 +102,9 @@ const Home = () => {
             Toque para exibir mais insights
             </Typography>
             </Box>
-
             </Box>
             </IconButton>
-
-
             </Grid>
-
-
             </>
             )
         }
