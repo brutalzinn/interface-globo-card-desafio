@@ -24,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
     gridChild:{
         margin:"auto",
     },
+    arrowSize:{
+        height: '24px',
+        width: '24px',
+        color: "#ED4D77"
+    },
     gridBox:{
         justifyContent: "center",
         color:"#FFFFFF",
@@ -39,7 +44,9 @@ const useStyles = makeStyles((theme) => ({
 
 const HeaderHead = () =>{
     const classes = useStyles();
+    const moreButton = () =>{
 
+    }
     return(
         <>
         <Grid container direction="row" justifyContent="center"
@@ -51,7 +58,7 @@ const HeaderHead = () =>{
         <Avatar alt="Roberto Paes" className={classes.avatarChild}  src={profileImage} />
         </Grid>
         <Grid className={classes.gridChild} item >
-        <IconButton style={{ color: "#ED4D77" }}>
+        <IconButton onClick={moreButton} className={classes.arrowSize}>
         <AddIcon/>
         </IconButton>
         </Grid>

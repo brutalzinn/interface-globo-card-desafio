@@ -36,8 +36,9 @@ const Card = ({text, tags}) =>{
                 return(
                 <Box
                 key={index}
+                style={{margin:"auto",marginTop:"15px"}}
                 >
-                <Typography style={{margin:15,color:"#ED4D77",borderColor:"rgba(237, 77, 119, 24%)",borderStyle:"solid", borderRadius:4}}>
+                <Typography style={{color:"#ED4D77",borderColor:"rgba(237, 77, 119, 24%)",borderStyle:"solid", borderRadius:4}}>
                 {c.name.toUpperCase()}
                 </Typography>
                 </Box>)
