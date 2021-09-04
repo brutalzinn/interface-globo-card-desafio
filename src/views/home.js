@@ -13,7 +13,7 @@ import CardTemplate from '../components/Cards/card.template'
 import Paper from '@material-ui/core/Paper'
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {getAllCardsAction} from '../store/card/card.action'
+import {getAllCardsAction , searchCardAction} from '../store/card/card.action'
 //dialog importers
 import DialogModal from '../components/dialog.modal'
 const useStyles = makeStyles((theme) => ({
@@ -80,6 +80,14 @@ const Home = () => {
     const moreCards = () =>{
         dispatch(getAllCardsAction())
     }
+    const handleSearch = (event) =>{
+        const {name, value} = event.target
+        setTimeout(() => {
+            dispatch(searchCardAction({key:value}))
+        }, 500);
+
+
+    }
     const FeederCard = () =>{
         if (cards == undefined || cards.length == 0) {
             return <></>
@@ -118,27 +126,24 @@ const Home = () => {
             </IconButton>
             <TextField
             name="tags"
-            label="Categoria"
             placeholder="Pesquise por termos ou categorias…"
+            onChange={handleSearch}
             className={classes.textBox}
             InputProps={{
                 endAdornment:(
                     <SearchIcon  className={classes.searchIcon}/>
                     )
-
-                    }}
-
-
-            InputLabelProps={{
-                shrink: true,
-            }}
-            variant="standard"
-            />
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                variant="standard"
+                />
 
 
-            </Grid>
-            </>
-            )
-        }
+                </Grid>
+                </>
+                )
+            }
 
-        export default Home
+            export default Home
