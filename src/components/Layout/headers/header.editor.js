@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const HeaderHead = () =>{
+const HeaderHead = ({mode}) =>{
     const classes = useStyles();
     const returnButton = () =>{
         navigate('/')
@@ -51,17 +51,17 @@ const HeaderHead = () =>{
         <IconButton onClick={returnButton} style={{color: "#ED4D77" }}>
         <ArrowBackIcon className={classes.arrowSize} />
         </IconButton>
-        <Typography style={{margin:"auto",color:"#ED4D77", fontSize:"20px"}}>Criar Insight</Typography>
+        <Typography style={{margin:"auto",color:"#ED4D77", fontSize:"20px"}}>{mode == 0 ? "Criar Insight" : "Editar Insight"}</Typography>
         </Box>
         </>
         )
     }
 
-    export default function Layout(){
+    export default function Header({mode}){
         const classes = useStyles();
         return (
             <div className={classes.root}>
-            <HeaderHead/>
+            <HeaderHead mode={mode}/>
             </div>
 
             );

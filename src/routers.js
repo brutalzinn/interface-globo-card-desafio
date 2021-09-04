@@ -11,6 +11,7 @@ const Routers = () => {
       <Router >
 
       <Home path='/'/>
+      <CardForm path='/form/:id'/>
       <CardForm path='/form'/>
 
       </Router>

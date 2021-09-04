@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
-import {insertCardAction} from '../../store/card/card.action'
+import {insertCardAction , getOneCardAction} from '../../store/card/card.action'
 import { useDispatch, useSelector } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 //mode 1 - Edit mode
 //mode 0 - Insert mode
-const CardFormTemplate = ({mode}) =>{
+const CardFormTemplate = ({mode, id}) =>{
     const classes = useStyles();
     const dispatch = useDispatch()
 
@@ -71,17 +71,45 @@ const CardFormTemplate = ({mode}) =>{
 
     const error = useSelector((state) => state.cards.error)
     const [charsCount, setCharsCount] = useState(maxChar)
+
     const [form, setForm] = useState({
         texto:"",
         tags:""
     })
+    const selected = useSelector((state) => state.cards.selected)
+
+    useEffect(()=>{
+        console.log('mode',mode)
+        if(mode == 1){
+            dispatch(getOneCardAction(id))
+        }
+    },[mode])
+
+
     useEffect(()=>{
         setOpen(error.length > 0)
-    },[error])
-    useEffect(()=>{
         setOpen(success)
-        console.log("deu certo?", success)
-    },[success])
+
+    },[error,success])
+    useEffect(()=>{
+        if(mode == 1){
+            let tagsString = ''
+            let lastChar = selected.tags.length - 1
+            let n = 0
+            selected.tags.map((item)=>{
+                if(n < lastChar){
+                    tagsString += item.name + ','
+                }else{
+                    tagsString += item.name
+                }
+                n++
+                console.log(n,lastChar)
+
+            })
+
+            setForm({...form,texto:selected.texto,tags:tagsString })
+        }
+    },[selected])
     const handleInput = (event) =>{
         const {name, value} = event.target
         switch(name){
@@ -104,12 +132,18 @@ const CardFormTemplate = ({mode}) =>{
 
     }
     const validateForm = () =>{
-        if(form.texto.length == 0){
+        if(form.texto && form.texto.length == 0){
             return true
         }
     }
     const submitForm = () =>{
-        dispatch(insertCardAction(form))
+        if(mode == 0){
+            dispatch(insertCardAction(form))
+        }else{
+
+            dispatch(insertCardAction(form))
+
+        }
     }
 
 
@@ -138,6 +172,7 @@ const CardFormTemplate = ({mode}) =>{
         <TextField
         name="tags"
         label="Categoria"
+        value={form.tags || ''}
         placeholder="Adicione uma categoria (opcional)…"
         onChange={handleInput}
         className={classes.textBox}
@@ -150,7 +185,7 @@ const CardFormTemplate = ({mode}) =>{
 
 
 
-        <Button disabled={validateForm()} className={classes.buttonSubmit} onClick={submitForm}>Publicar</Button>
+        <Button disabled={validateForm()} className={classes.buttonSubmit} onClick={submitForm}>{mode == 0? "Publicar" : "Editar"}</Button>
         {/* <Button className={classes.buttonDelete} onClick={submitForm}>Deletar</Button> */}
         </Box>
         </Paper>)

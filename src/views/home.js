@@ -16,6 +16,7 @@ import {getAllCardsAction , searchCardAction} from '../store/card/card.action'
 import SearchBar from '../components/search.template'
 //dialog importers
 import DialogModal from '../components/Modals/dialog.modal'
+import { navigate } from '@reach/router';
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor:"#F4F4F4"
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
     const classes = useStyles();
     const dispatch = useDispatch()
+
 
     const [open, setOpen] = React.useState(false);
     const error = useSelector((state) => state.cards.error)
@@ -74,7 +76,7 @@ const Home = () => {
         }
         return cards.map((item ,index)=>{
             return (
-                <Grid item xs={12} key={index}>
+                <Grid item xs={12} key={index} onClick={()=> navigate(`/form/${item.id}`)}>
                 <CardTemplate text={item.texto} tags={item.tags}/>
                 </Grid>
                 )
@@ -107,9 +109,9 @@ const Home = () => {
             <SearchBar/>
 
 
-                </Grid>
-                </>
-                )
-            }
+            </Grid>
+            </>
+            )
+        }
 
-            export default Home
+        export default Home

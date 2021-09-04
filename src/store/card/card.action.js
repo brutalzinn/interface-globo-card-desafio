@@ -1,6 +1,8 @@
 import {
   getAllCards,
   insertCard,
+  getOneCard,
+  updateCard,
   searchCard
 } from '../../services/cards.service'
 import {  cardType  } from '../types'
@@ -54,6 +56,34 @@ export const insertCardAction = (data) => {
     }
     catch (error) {
       dispatch({ type: cardType.CARD_ERROR, data: error.response ? error.response.data : "Ocorreu um erro ao inserir o card"})
+    }
+  }
+}
+
+
+export const getOneCardAction = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: cardType.CARD_LOADING, status: true })
+      let result = await getOneCard(id)
+      dispatch({ type: cardType.CARD_EDIT, data:result.data })
+
+    }
+    catch (error) {
+      dispatch({ type: cardType.CARD_ERROR, data: error.response ? error.response.data : "Ocorreu um erro ao selecionar o card"})
+    }
+  }
+}
+export const editCardAction = (data,id) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: cardType.CARD_LOADING, status: true })
+      let result = await updateCard(data,id)
+      dispatch({ type: cardType.CARD_EDIT, data:result.data })
+
+    }
+    catch (error) {
+      dispatch({ type: cardType.CARD_ERROR, data: error.response ? error.response.data : "Ocorreu um erro ao selecionar o card"})
     }
   }
 }

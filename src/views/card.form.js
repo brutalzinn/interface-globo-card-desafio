@@ -32,19 +32,25 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const Home = () => {
+const Home = (props) => {
     const classes = useStyles();
     // const fillCards = () =>{
     //     dispatch(getAllCardsAction())
     // }
+    const [mode, setMode] = React.useState(0);
 
 
+    useEffect(()=>{
+        if(props.id){
+            setMode(1)
+        }
+    },[])
 
     return (
         <Grid className={classes.root}>
-        <HeaderEditor/>
+        <HeaderEditor mode={mode}/>
 
-        <CardFormTemplate/>
+        <CardFormTemplate mode={mode} id={props.id}/>
 
 
         </Grid>
