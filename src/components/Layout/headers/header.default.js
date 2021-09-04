@@ -1,9 +1,9 @@
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
-import imageBackgound from '../../image/background.svg'
-import insightImage from '../../image/insights.svg'
-import profileImage from '../../image/profile.jpg'
+import imageBackgound from '../../../image/background.svg'
+import insightImage from '../../../image/insights.svg'
+import profileImage from '../../../image/profile.jpg'
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add'
 import Avatar from '@material-ui/core/Avatar'

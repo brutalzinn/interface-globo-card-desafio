@@ -22,6 +22,11 @@ const reducer = (state = INITIAL_STATE, action) => {
     state.page += 1
     state.loading = false
     return state
+    case cardType.CARD_SEARCH:
+    state.all = action.data.cards
+    state.page += 1
+    state.loading = false
+    return state
     case cardType.CARD_EDIT:
     state.selected = action.data
     state.loading = false
