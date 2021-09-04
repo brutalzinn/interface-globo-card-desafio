@@ -2,9 +2,12 @@
 import Header from '../components/Layout/header.default'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
+import TextField from '@material-ui/core/TextField'
+import InputAdornment from '@material-ui/core/InputAdornment';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import CardTemplate from '../components/Cards/card.template'
 import Paper from '@material-ui/core/Paper'
@@ -20,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
     gridChild:{
         margin:"10px"
     },
+    searchIcon:{
+        width:"24px",
+        height:"24px"
+    },
     paper: {
         padding: theme.spacing(3),
         margin:"10px",
@@ -29,6 +36,10 @@ const useStyles = makeStyles((theme) => ({
     gridMore:{
         color:"#666666",
         textAlign:"center"
+    },
+    textBox:{
+        width:"100%",
+        height:"56px",
     }
 }));
 
@@ -56,7 +67,7 @@ const Home = () => {
 
     useEffect(() => {
         if(error.length > 0){
-           setOpen(true)
+            setOpen(true)
         }else{
             setOpen(false)
 
@@ -105,6 +116,26 @@ const Home = () => {
             </Box>
             </Box>
             </IconButton>
+            <TextField
+            name="tags"
+            label="Categoria"
+            placeholder="Pesquise por termos ou categorias…"
+            className={classes.textBox}
+            InputProps={{
+                endAdornment:(
+                    <SearchIcon  className={classes.searchIcon}/>
+                    )
+
+                    }}
+
+
+            InputLabelProps={{
+                shrink: true,
+            }}
+            variant="standard"
+            />
+
+
             </Grid>
             </>
             )

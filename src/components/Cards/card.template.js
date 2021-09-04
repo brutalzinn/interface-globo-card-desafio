@@ -12,13 +12,21 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         padding: theme.spacing(3),
-        margin:"10px",
+        margin:"8px",
+        width:"36vh",
+        height:"116px",
         borderRadius:10,
         textAlign: 'center',
     },
     gridMore:{
         color:"#666666",
         textAlign:"center"
+    },
+    tagName:{
+        color:"#ED4D77",
+        borderColor:"rgba(237, 77, 119, 24%)",
+        borderStyle:"solid",
+        borderRadius:4
     }
 }));
 
@@ -34,29 +42,25 @@ const Card = ({text, tags}) =>{
             >
             {tags.map((c,index)=>{
                 return(
-                <Box
-                key={index}
-                style={{margin:"auto",marginTop:"15px"}}
-                >
-                <Typography style={{color:"#ED4D77",borderColor:"rgba(237, 77, 119, 24%)",borderStyle:"solid", borderRadius:4}}>
-                {c.name.toUpperCase()}
-                </Typography>
+                    <Box
+                    key={index}
+                    style={{margin:"auto",marginTop:"15px"}}
+                    >
+                    <Typography className={classes.tagName}>
+                    {c.name.toUpperCase()}
+                    </Typography>
+                    </Box>)
+                })}
                 </Box>)
-            })}
-            </Box>)
-        }
+            }
 
-        return(
-            <Paper className={classes.paper}>
-            <Typography>
+            return(
+                <Paper className={classes.paper}>
+                <Typography>
+                {text}
+                </Typography>
+                <ArrayTags/>
+                </Paper>)
+            }
 
-            {text}
-
-            </Typography>
-            <ArrayTags/>
-
-
-            </Paper>)
-        }
-
-        export default Card
+            export default Card
