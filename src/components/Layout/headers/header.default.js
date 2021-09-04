@@ -56,8 +56,8 @@ const HeaderHead = () =>{
         <Avatar alt="Roberto Paes" className={classes.avatarChild}  src={profileImage} />
         </Grid>
         <Grid className={classes.gridChild} item >
-        <IconButton onClick={moreButton} className={classes.arrowSize}>
-        <AddIcon/>
+        <IconButton onClick={moreButton}>
+        <AddIcon className={classes.arrowSize}/>
         </IconButton>
         </Grid>
         </Grid>

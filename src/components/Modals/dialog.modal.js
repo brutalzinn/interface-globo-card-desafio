@@ -49,7 +49,7 @@ const DialogTitle = withStyles(styles)((props) => {
             },
         }))(MuiDialogActions);
 
-        export default function CustomizedDialogs({open,setOpen,message,loading,setDialogOpt,options = true}) {
+        export default function CustomizedDialogs({open,setOpen,actionAccept,message,loading,title="",setDialogOpt,options = false}) {
 
             const LoadingInfo = () =>{
                 if(loading){
@@ -64,16 +64,22 @@ const DialogTitle = withStyles(styles)((props) => {
 
                 const handleClose = () => {
                     setOpen(false);
+                    if(actionAccept){
+                        actionAccept()
+                    }
+
                 };
                 const handleOptionsButton = (type) =>{
                     setDialogOpt(type)
+                    setOpen(false);
+
                 }
                 return (
                     <div>
 
                     <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                     <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    {loading ? "" : "Ops... Não temos nenhuma novidade :(" }
+                    {loading ? "" : title }
                     </DialogTitle>
                     <DialogContent dividers>
                     <LoadingInfo/>

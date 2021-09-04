@@ -96,3 +96,9 @@ export const editCardAction = (data,id) => {
     }
   }
 }
+
+export const clearErrorAction = () => {
+  return async (dispatch) => {
+      dispatch({ type: cardType.CARD_CLEAR_ERROR })
+  }
+}

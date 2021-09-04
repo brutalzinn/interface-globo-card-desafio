@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import DialogModal from '../Modals/dialog.modal'
-
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor:"#F4F4F4"
@@ -163,6 +162,7 @@ const CardFormTemplate = ({mode, id}) =>{
     const deleteCard = () =>{
         mode = 2
         setMessage("Você tem certeza que deseja deletar esse card?")
+
         setDeleteMode(true)
         setOpen(true)
 
@@ -173,7 +173,7 @@ const CardFormTemplate = ({mode, id}) =>{
         <Box
         display="flex" flexDirection="column"
         >
-        <DialogModal open={open} setOpen={setOpen} options={deleteMode} setDialogOpt={setDialogOpt} dialogOpt={dialogOpt} message={message}/>
+        <DialogModal open={open} setOpen={setOpen} options={deleteMode} setDialogOpt={setDialogOpt} title="" dialogOpt={dialogOpt} message={message}/>
         <TextField
         label="Insight"
         multiline
