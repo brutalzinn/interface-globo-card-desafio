@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
-import {insertCardAction , getOneCardAction} from '../../store/card/card.action'
+import {insertCardAction , getOneCardAction, editCardAction} from '../../store/card/card.action'
 import { useDispatch, useSelector } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor:"#ED4D77",
         color:"#FFFFFF",
         margin:"auto",
-        width:"250px",
+        width:"150px",
         height:"56px",
         marginTop:"5px",
         '&:hover': {
@@ -93,6 +93,7 @@ const CardFormTemplate = ({mode, id}) =>{
     },[error,success])
     useEffect(()=>{
         if(mode == 1){
+
             let tagsString = ''
             let lastChar = selected.tags.length - 1
             let n = 0
@@ -103,11 +104,11 @@ const CardFormTemplate = ({mode, id}) =>{
                     tagsString += item.name
                 }
                 n++
-                console.log(n,lastChar)
 
             })
 
             setForm({...form,texto:selected.texto,tags:tagsString })
+
         }
     },[selected])
     const handleInput = (event) =>{
@@ -126,33 +127,48 @@ const CardFormTemplate = ({mode, id}) =>{
 
             break
             case "tags":
-            setForm({...form,tags:[value]})
+            setForm({...form,tags:value})
             break
         }
 
     }
     const validateForm = () =>{
-        if(form.texto && form.texto.length == 0){
+        if(form.texto.length == 0){
             return true
         }
     }
     const submitForm = () =>{
         if(mode == 0){
-            dispatch(insertCardAction(form))
-        }else{
+            let generateTags = form.tags.split(",")
+            dispatch(insertCardAction({...form,tags:generateTags}))
 
-            dispatch(insertCardAction(form))
-
+        }else if(mode == 1){
+            let generateTags = form.tags.split(",")
+            dispatch(editCardAction({...form,tags:generateTags},id))
         }
     }
+    const deleteCard = () =>{
 
+    }
+    const messageModal = () =>{
+        switch(mode){
+            case 0:
+            return "Card inserido com sucesso."
+            case 1:
+            return "Card atualizado com sucesso."
+            case 2:
+            return "Card deletado com sucesso."
+            default:
+            return "Ops.. alguma coisa deu errado :("
+        }
+    }
 
     return(
         <Paper className={classes.paper}>
         <Box
         display="flex" flexDirection="column"
         >
-        <DialogModal open={open} setOpen={setOpen} message={success ? "Card inserido com sucesso." : "Ocorreu um erro ao inserir o card."}/>
+        <DialogModal open={open} setOpen={setOpen} message={messageModal()}/>
         <TextField
         label="Insight"
         multiline
@@ -186,7 +202,7 @@ const CardFormTemplate = ({mode, id}) =>{
 
 
         <Button disabled={validateForm()} className={classes.buttonSubmit} onClick={submitForm}>{mode == 0? "Publicar" : "Editar"}</Button>
-        {/* <Button className={classes.buttonDelete} onClick={submitForm}>Deletar</Button> */}
+        <Button className={classes.buttonDelete} onClick={submitForm}>Deletar</Button>
         </Box>
         </Paper>)
     }
