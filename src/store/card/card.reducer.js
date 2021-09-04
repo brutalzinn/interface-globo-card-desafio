@@ -33,7 +33,7 @@ const reducer = (state = INITIAL_STATE, action) => {
     state.selected = action.data
     state.loading = false
     return state
-    case cardType.CARD_UPDATE:
+    case cardType.CARD_SUCCESS:
     state.loading = false
     state.success = true
     case cardType.CARD_CREATE:

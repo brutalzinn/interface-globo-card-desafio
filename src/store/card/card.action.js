@@ -2,6 +2,7 @@ import {
   getAllCards,
   insertCard,
   getOneCard,
+  deleteCard,
   updateCard,
   searchCard
 } from '../../services/cards.service'
@@ -69,12 +70,26 @@ export const getOneCardAction = (id) => {
     }
   }
 }
+
+export const deleteCardAction = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: cardType.CARD_LOADING, status: true })
+      await deleteCard(id)
+      dispatch({ type: cardType.CARD_SUCCESS })
+    }
+    catch (error) {
+      dispatch({ type: cardType.CARD_ERROR, data: error.response ? error.response.data : "Ocorreu um erro ao selecionar o card"})
+    }
+  }
+}
+
 export const editCardAction = (data,id) => {
   return async (dispatch) => {
     try {
       dispatch({ type: cardType.CARD_LOADING, status: true })
       await updateCard(data,id)
-      dispatch({ type: cardType.CARD_UPDATE })
+      dispatch({ type: cardType.CARD_SUCCESS })
     }
     catch (error) {
       dispatch({ type: cardType.CARD_ERROR, data: error.response ? error.response.data : "Ocorreu um erro ao selecionar o card"})

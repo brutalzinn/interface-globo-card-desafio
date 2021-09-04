@@ -49,7 +49,7 @@ const DialogTitle = withStyles(styles)((props) => {
             },
         }))(MuiDialogActions);
 
-        export default function CustomizedDialogs({open,setOpen,message,loading}) {
+        export default function CustomizedDialogs({open,setOpen,message,loading,setDialogOpt,options = true}) {
 
             const LoadingInfo = () =>{
                 if(loading){
@@ -65,22 +65,34 @@ const DialogTitle = withStyles(styles)((props) => {
                 const handleClose = () => {
                     setOpen(false);
                 };
-
+                const handleOptionsButton = (type) =>{
+                    setDialogOpt(type)
+                }
                 return (
                     <div>
 
                     <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                     <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                        {loading ? "" : "Ops... Não temos nenhuma novidade :(" }
-                        </DialogTitle>
-                        <DialogContent dividers>
-                        <LoadingInfo/>
-                        <Typography gutterBottom>
-                        {loading ? "Carregando insights..." : message}
-                        </Typography>
-                        </DialogContent>
-                        <DialogActions>
-                        {!loading &&
+                    {loading ? "" : "Ops... Não temos nenhuma novidade :(" }
+                    </DialogTitle>
+                    <DialogContent dividers>
+                    <LoadingInfo/>
+                    <Typography gutterBottom>
+                    {loading ? "Carregando insights..." : message}
+                    </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                    {options &&
+                        <>
+                        <Button onClick={handleClose} color="primary">
+                        CANCELAR
+                        </Button>
+                        <Button onClick={()=>handleOptionsButton(1)} color="primary">
+                        ACEITAR
+                        </Button>
+                        </>
+                    }
+                    {!loading && !options &&
                         <Button autoFocus onClick={handleClose} color="primary">
                         ACEITAR
                         </Button>}

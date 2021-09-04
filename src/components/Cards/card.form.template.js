@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
-import {insertCardAction , getOneCardAction, editCardAction} from '../../store/card/card.action'
+import {insertCardAction , getOneCardAction, editCardAction, deleteCardAction} from '../../store/card/card.action'
 import { useDispatch, useSelector } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
@@ -63,9 +63,12 @@ const CardFormTemplate = ({mode, id}) =>{
     const dispatch = useDispatch()
 
     const maxChar = 400
-    const [hasError,setHasError] = useState(true)
+    const [message, setMessage] = React.useState("");
+
+    const [dialogOpt, setDialogOpt] = React.useState(0);
+    const [deleteMode, setDeleteMode] = React.useState(false);
+
     const [open, setOpen] = React.useState(false);
-    const [message,setMessage] = useState("")
 
     const success = useSelector((state) => state.cards.success)
 
@@ -141,26 +144,28 @@ const CardFormTemplate = ({mode, id}) =>{
         if(mode == 0){
             let generateTags = form.tags.split(",")
             dispatch(insertCardAction({...form,tags:generateTags}))
+            setMessage("Card criado com sucesso.")
+
 
         }else if(mode == 1){
             let generateTags = form.tags.split(",")
             dispatch(editCardAction({...form,tags:generateTags},id))
-        }
-    }
-    const deleteCard = () =>{
+            setMessage("Card atualizado com sucesso.")
 
-    }
-    const messageModal = () =>{
-        switch(mode){
-            case 0:
-            return "Card inserido com sucesso."
-            case 1:
-            return "Card atualizado com sucesso."
-            case 2:
-            return "Card deletado com sucesso."
-            default:
-            return "Ops.. alguma coisa deu errado :("
         }
+    }
+    useEffect(()=>{
+        if(dialogOpt == 1){
+            dispatch(deleteCardAction(id))
+
+        }
+    },[dialogOpt])
+    const deleteCard = () =>{
+        mode = 2
+        setMessage("Você tem certeza que deseja deletar esse card?")
+        setDeleteMode(true)
+        setOpen(true)
+
     }
 
     return(
@@ -168,7 +173,7 @@ const CardFormTemplate = ({mode, id}) =>{
         <Box
         display="flex" flexDirection="column"
         >
-        <DialogModal open={open} setOpen={setOpen} message={messageModal()}/>
+        <DialogModal open={open} setOpen={setOpen} options={deleteMode} setDialogOpt={setDialogOpt} dialogOpt={dialogOpt} message={message}/>
         <TextField
         label="Insight"
         multiline
@@ -202,7 +207,7 @@ const CardFormTemplate = ({mode, id}) =>{
 
 
         <Button disabled={validateForm()} className={classes.buttonSubmit} onClick={submitForm}>{mode == 0? "Publicar" : "Editar"}</Button>
-        <Button className={classes.buttonDelete} onClick={submitForm}>Deletar</Button>
+        <Button className={classes.buttonDelete} onClick={deleteCard}>Deletar</Button>
         </Box>
         </Paper>)
     }
