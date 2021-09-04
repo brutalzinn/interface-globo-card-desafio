@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import DialogModal from '../Modals/dialog.modal'
+
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor:"#F4F4F4"
@@ -37,8 +39,12 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor:"#ED4D77",
         color:"#FFFFFF",
         margin:"auto",
-        width:"382px",
+        width:"250px",
         height:"56px",
+        '&:disabled': {
+            backgroundColor: "rgba(237,77,119,50%)",
+            color:"#FFFFFF"
+        },
         '&:hover': {
             backgroundColor: "rgba(237,77,119,50%)",
         },
@@ -57,15 +63,27 @@ const CardFormTemplate = ({mode}) =>{
     const dispatch = useDispatch()
 
     const maxChar = 400
+    const [hasError,setHasError] = useState(true)
+    const [open, setOpen] = React.useState(false);
+    const [message,setMessage] = useState("")
+
+    const success = useSelector((state) => state.cards.success)
+
+    const error = useSelector((state) => state.cards.error)
     const [charsCount, setCharsCount] = useState(maxChar)
     const [form, setForm] = useState({
         texto:"",
         tags:""
     })
-
+    useEffect(()=>{
+        setOpen(error.length > 0)
+    },[error])
+    useEffect(()=>{
+        setOpen(success)
+        console.log("deu certo?", success)
+    },[success])
     const handleInput = (event) =>{
         const {name, value} = event.target
-        console.log(name,value)
         switch(name){
             case "texto":
             if(value.length > form.texto.length){
@@ -85,9 +103,13 @@ const CardFormTemplate = ({mode}) =>{
         }
 
     }
+    const validateForm = () =>{
+        if(form.texto.length == 0){
+            return true
+        }
+    }
     const submitForm = () =>{
         dispatch(insertCardAction(form))
-
     }
 
 
@@ -96,6 +118,7 @@ const CardFormTemplate = ({mode}) =>{
         <Box
         display="flex" flexDirection="column"
         >
+        <DialogModal open={open} setOpen={setOpen} message={success ? "Card inserido com sucesso." : "Ocorreu um erro ao inserir o card."}/>
         <TextField
         label="Insight"
         multiline
@@ -127,7 +150,7 @@ const CardFormTemplate = ({mode}) =>{
 
 
 
-        <Button className={classes.buttonSubmit} onClick={submitForm}>Publicar</Button>
+        <Button disabled={validateForm()} className={classes.buttonSubmit} onClick={submitForm}>Publicar</Button>
         {/* <Button className={classes.buttonDelete} onClick={submitForm}>Deletar</Button> */}
         </Box>
         </Paper>)

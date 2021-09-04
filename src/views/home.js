@@ -84,7 +84,7 @@ const Home = () => {
         return (
             <>
             <Header/>
-            <DialogModal open={open} setOpen={setOpen} loading={loading} />
+            <DialogModal open={open} setOpen={setOpen} message="Não há mais nenhum insight disponível." loading={loading} />
             <Grid container
             direction="column" className={classes.root}
             justifyContent="center"

@@ -49,7 +49,7 @@ const DialogTitle = withStyles(styles)((props) => {
             },
         }))(MuiDialogActions);
 
-        export default function CustomizedDialogs({open,setOpen,loading}) {
+        export default function CustomizedDialogs({open,setOpen,message,loading}) {
 
             const LoadingInfo = () =>{
                 if(loading){
@@ -61,9 +61,7 @@ const DialogTitle = withStyles(styles)((props) => {
                     }
 
                 }
-                const handleClickOpen = () => {
-                    setOpen(true);
-                };
+
                 const handleClose = () => {
                     setOpen(false);
                 };
@@ -78,7 +76,7 @@ const DialogTitle = withStyles(styles)((props) => {
                         <DialogContent dividers>
                         <LoadingInfo/>
                         <Typography gutterBottom>
-                        {loading ? "Carregando insights..." : "Não há mais nenhum insight disponível." }
+                        {loading ? "Carregando insights..." : message}
                         </Typography>
                         </DialogContent>
                         <DialogActions>

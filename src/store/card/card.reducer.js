@@ -2,6 +2,7 @@ import {cardType} from '../types'
 
 const INITIAL_STATE = {
   loading: false,
+  success: false,
   all: [],
   upload: {},
   selected: {},
@@ -16,6 +17,7 @@ const reducer = (state = INITIAL_STATE, action) => {
     case cardType.CARD_LOADING:
     state.error = []
     state.loading = action.status
+    state.success = false
     return state
     case cardType.CARD_ALL:
     state.all = state.all.concat(action.data.cards)
@@ -33,10 +35,12 @@ const reducer = (state = INITIAL_STATE, action) => {
     return state
     case cardType.CARD_CREATE:
     state.loading = false
+    state.success = true
     return state
     case cardType.CARD_ERROR:
     const err = [...state.error, action.data]
     state.loading = false
+    state.success = false
     state.error = err;
     return state
     default:

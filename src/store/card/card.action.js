@@ -23,7 +23,7 @@ export const getAllCardsAction = (clearCards) => {
 
     }
     catch (error) {
-      dispatch({ type: cardType.CARD_ERROR, data: error.response.data })
+      dispatch({ type: cardType.CARD_ERROR, data: error.response ? error.response.data : "Ocorreu um erro na listagem de cards. Tente novamente." })
 
     }
   }
@@ -39,7 +39,7 @@ export const searchCardAction = (data) => {
       dispatch({ type: cardType.CARD_SEARCH, data: result.data })
     }
     catch (error) {
-     dispatch({ type: cardType.CARD_ERROR, data: error.response.data })
+     dispatch({ type: cardType.CARD_ERROR, data: error.response ? error.response.data : "Ocorreu um erro ao pesquisar o card"})
     }
   }
 }
@@ -49,9 +49,11 @@ export const insertCardAction = (data) => {
     try {
       dispatch({ type: cardType.CARD_LOADING, status: true })
       await insertCard(data)
+      dispatch({ type: cardType.CARD_CREATE })
+
     }
     catch (error) {
-      dispatch({ type: cardType.CARD_ERROR, data: error.response.data })
+      dispatch({ type: cardType.CARD_ERROR, data: error.response ? error.response.data : "Ocorreu um erro ao inserir o card"})
     }
   }
 }
