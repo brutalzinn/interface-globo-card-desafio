@@ -65,10 +65,21 @@ const Home = (props) => {
         }
     },[]);
 
+    // useEffect(() => {
+    //     setOpen(error.length > 0)
+    // },[error]);
+
     useEffect(() => {
-        console.log(JSON.stringify(error))
-        setOpen(error.length > 0)
-    },[error]);
+        if(error.length > 0){
+            setOpen(true)
+        }else{
+            setOpen(false)
+
+        }
+        if(loading){
+            setOpen(true)
+        }
+    },[error,loading]);
     const clearErrors = () =>{
         dispatch(clearErrorAction())
     }
