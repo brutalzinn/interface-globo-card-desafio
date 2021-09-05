@@ -2,9 +2,11 @@
 
 Esse projeto é uma interface gráfica desenvolvida com ReactJS e Material-UI para ser utilizada em conjunto com a Api GloboCard. Com objetivo de facilitar o processo de criação de Cards esportivos(Insights) para o desafio Globo. Sendo possível criar, deletar e atualizar e procurar Cards por Tags. Esse projeto está hospedado no Vercel e utilizando o método de deploy automático. Você pode acessar esse projeto hospedado no Vercel em [clique aqui](https://interface-globo-card-desafio.vercel.app/). É necessário aguardar até que o Heroku(Nuvem onde a api se encontra hospedada) responda.
 
+> É necessário instalar o NodeJS versão >= 10
+
 ## Requerimentos:
 
-- NodeJS
+- NodeJS >= 10
 - ReactJS > 14.x
 
 
@@ -49,8 +51,10 @@ Esse projeto é uma interface gráfica desenvolvida com ReactJS e Material-UI pa
 4. Execute o comando npm install
 5. Aguarde o procedimento de instação das dependências
 6. Crie um arquivo .env na raíz do projeto e adicione as seguintes linhas:
-
+        #A PORTA PADRÃO DESSE PROJETO É 3000. VOCÊ PODE ALTERAR NA LINHA ABAIXO:
         PORT=3000
+        #ESSA É A URL PADRÃO DA API GLOBO CARD. VOCÊ PODE UTILIZAR A URL DA API EM AMBIENTE DE PRODUÇÃO PARA TESTES:
+        #URL API GLOBO CARD EM PRODUÇÃO: https://api-globo-card.herokuapp.com/
         REACT_APP_API=http://127.0.0.1:5000
 
 6. Ainda no terminal, execute o comando npm start
@@ -61,7 +65,10 @@ Esse projeto é uma interface gráfica desenvolvida com ReactJS e Material-UI pa
 2. Acesse a pasta raíz do projeto clonado.
 3. Crie um arquivo .env na raíz do projeto e adicione as seguintes linhas:
 
+        #A PORTA PADRÃO DESSE PROJETO É 3000. VOCÊ PODE ALTERAR NA LINHA ABAIXO:
         PORT=3000
+        #ESSA É A URL PADRÃO DA API GLOBO CARD. VOCÊ PODE UTILIZAR A URL DA API EM AMBIENTE DE PRODUÇÃO PARA TESTES:
+        #URL API GLOBO CARD EM PRODUÇÃO: https://api-globo-card.herokuapp.com/
         REACT_APP_API=http://127.0.0.1:5000
 
 4. Abra um terminal na raíz do projeto.
