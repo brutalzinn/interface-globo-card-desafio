@@ -113,14 +113,18 @@ const CardFormTemplate = ({mode, id}) =>{
 
         }
     },[selected])
+
     const handleInput = (event) =>{
         const {name, value} = event.target
         switch(name){
             case "texto":
+            let diffAsc = value.length - form.texto.length
+            let diffDesc = form.texto.length - value.length
+
             if(value.length > form.texto.length){
-                setCharsCount(charsCount - 1)
+                setCharsCount(charsCount - diffAsc)
             }else if(value.length < form.texto.length){
-                setCharsCount(charsCount + 1)
+                setCharsCount(charsCount + diffDesc)
             }
             if(value.length == 0){
                 setCharsCount(maxChar)

@@ -9,6 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import gifLoading from '../../image/loading.gif'
+
+//THIS DIALOG MODAL IS BASED ON A MATERIAL UI EXAMPLE DOCUMENTATION
+//AND CAN BE FOUND AT https://material-ui.com/pt/components/dialogs/#CustomizedDialogs.js
 const styles = (theme) => ({
     root: {
         margin: 0,

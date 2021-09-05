@@ -12,9 +12,9 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         padding: theme.spacing(3),
-        margin:"8px",
+        marginTop:theme.spacing(1),
         width:"36vh",
-        height:"116px",
+        height:"auto",
         borderRadius:10,
         textAlign: 'center',
     },
