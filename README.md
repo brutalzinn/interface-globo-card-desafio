@@ -51,14 +51,15 @@ Esse projeto é uma interface gráfica desenvolvida com ReactJS e Material-UI pa
 4. Execute o comando npm install
 5. Aguarde o procedimento de instação das dependências
 6. Crie um arquivo .env na raíz do projeto e adicione as seguintes linhas:
+
         #A PORTA PADRÃO DESSE PROJETO É 3000. VOCÊ PODE ALTERAR NA LINHA ABAIXO:
         PORT=3000
         #ESSA É A URL PADRÃO DA API GLOBO CARD. VOCÊ PODE UTILIZAR A URL DA API EM AMBIENTE DE PRODUÇÃO PARA TESTES:
         #URL API GLOBO CARD EM PRODUÇÃO: https://api-globo-card.herokuapp.com/
         REACT_APP_API=http://127.0.0.1:5000
 
-6. Ainda no terminal, execute o comando npm start
-7. Aguarde o processo de inicialização e espere seu navegador ser aberto com o projeto.
+7. Ainda no terminal, execute o comando npm start
+8. Aguarde o processo de inicialização e espere seu navegador ser aberto com o projeto.
 
 ## Primeiros passos(docker)
 1. Clone esse repositório em um local de fácil localização
