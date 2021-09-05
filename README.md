@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Interface Globocard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esse projeto é uma interface gráfica desenvolvida com ReactJS e Material-UI para ser utilizada em conjunto com a Api GloboCard. Com objetivo de facilitar o processo de criação de Cards esportivos(Insights) para o desafio Globo. Sendo possível criar, deletar e atualizar e procurar Cards por Tags. Esse projeto está hospedado no Vercel e utilizando o método de deploy automático. Você pode acessar esse projeto hospedado no Vercel em [clique aqui](https://interface-globo-card-desafio.vercel.app/). É necessário aguardar até que o Heroku(Nuvem onde a api se encontra hospedada) responda.
+## Requerimentos:
 
-## Available Scripts
+- NodeJS
+- ReactJS > 14.x
 
-In the project directory, you can run:
 
-### `npm start`
+## Bibliotecas utilizadas:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- react-redux
+- Reach/router
+- Material-UI
+- ReduxThunk
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Primeiros passos(padrão)
+1. Clone esse repositório em um local de fácil localização
+2. Acesse a pasta raíz do projeto clonado.
+3. Abra um terminal na raíz do projeto.
+4. Execute o comando npm install
+5. Aguarde o procedimento de instação das dependências
+6. Crie um arquivo .env na raíz do projeto e adicione as seguintes linhas:
 
-### `npm run build`
+        PORT=3000
+        REACT_APP_API=http://127.0.0.1:5000
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+6. Ainda no terminal, execute o comando npm start
+7. Aguarde o processo de inicialização e espere seu navegador ser aberto com o projeto.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Primeiros passos(docker)
+1. Clone esse repositório em um local de fácil localização
+2. Acesse a pasta raíz do projeto clonado.
+3. Crie um arquivo .env na raíz do projeto e adicione as seguintes linhas:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+        PORT=3000
+        REACT_APP_API=http://127.0.0.1:5000
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+4. Abra um terminal na raíz do projeto.
+5. Execute o comando docker-compose up
+6. Aguarde o procedimento de inicialização do Docker.
+7. Acesse a url http://127.0.0.1:5000 no seu navegador.

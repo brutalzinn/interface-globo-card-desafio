@@ -1,5 +1,5 @@
 import http from '../config/http'
-const baseUrl = '/v1'
+const baseUrl = ''
 
 
 export const getAllCards = (page = 1) => http.get(`${baseUrl}/cards/list/${page}/3`)
