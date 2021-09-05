@@ -4,6 +4,9 @@ Esse projeto é uma interface gráfica desenvolvida com ReactJS e Material-UI pa
 
 Você pode acessar esse projeto hospedado no Vercel em [clique aqui](https://interface-globo-card-desafio.vercel.app/). É necessário aguardar até que o Heroku(nuvem onde a api se encontra hospedada) responda.
 
+Você pode acessar o repositório original da Interface GloboCard [clicando aqui](https://github.com/brutalzinn/interface-globo-card-desafio)
+
+
 > É necessário instalar o NodeJS versão >= 10
 
 ## Requerimentos:
