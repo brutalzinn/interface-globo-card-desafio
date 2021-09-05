@@ -1,6 +1,7 @@
 # Interface Globocard
 
 Esse projeto é uma interface gráfica desenvolvida com ReactJS e Material-UI para ser utilizada em conjunto com a Api GloboCard. Com objetivo de facilitar o processo de criação de Cards esportivos(Insights) para o desafio Globo. Sendo possível criar, deletar e atualizar e procurar Cards por Tags. Esse projeto está hospedado no Vercel e utilizando o método de deploy automático. Você pode acessar esse projeto hospedado no Vercel em [clique aqui](https://interface-globo-card-desafio.vercel.app/). É necessário aguardar até que o Heroku(Nuvem onde a api se encontra hospedada) responda.
+
 ## Requerimentos:
 
 - NodeJS
@@ -14,6 +15,31 @@ Esse projeto é uma interface gráfica desenvolvida com ReactJS e Material-UI pa
 - Material-UI
 - ReduxThunk
 
+## Telas responsivas para dispositivos móveis e computadores.
+
+<img src="github/images/mobile_feed.png" alt="drawing" width="300"/>
+
+- Tela para exibir cards em dispositivos móveis.
+
+<img src="github/images/mobile_create.png" alt="drawing" width="300"/>
+
+- Tela para criar cards em dispositivos móveis.
+
+<img src="github/images/mobile_edit.png" alt="drawing" width="300"/>
+
+- Tela para editar cards em dispositivos móveis.
+
+<img src="github/images/pc_feed.png" alt="drawing" width="500" height="300"/>
+
+- Tela para exibir cards em computadores.
+
+<img src="github/images/pc_create.png" alt="drawing" width="500" height="300"/>
+
+- Tela para criar cards em computadores.
+
+<img src="github/images/pc_edit.png" alt="drawing" width="500" height="300"/>
+
+- Tela para editar cards em computadores.
 
 
 ## Primeiros passos(padrão)
